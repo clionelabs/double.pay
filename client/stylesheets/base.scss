@@ -1,0 +1,33 @@
+header {
+   background: url("/images/header.png");
+   a.navbar-brand {
+    font-weight: 700;
+    font-size: 26px;
+    font-family: Arial;
+    color: #efefef;
+  }
+}
+
+.pre {
+  white-space: pre;
+}
+
+
+footer {
+  background-color: #003D6A;
+  color: #efefef;
+  padding: 15px;
+  font-weight: 300;
+
+
+  a {
+    color: #efefef;
+    &:hover {
+      color: #bcbcbc;
+    }
+  }
+
+  .links {
+    text-align: right;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "braintree": {
+    "isProduction": false,
+    "publicKey": "",
+    "privateKey": "",
+    "merchantId": ""
+  }
+}

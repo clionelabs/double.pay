@@ -5,5 +5,10 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
+grigio:babel
+double-core
+alanning:roles@1.2.13
+hiukim:braintree-helper
+iron:router
+gfk:notifications
+fourseven:scss

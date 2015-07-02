@@ -1,0 +1,23 @@
+<template name="paymentAuthorization">
+  {{> notifications}}
+  {{> header }}
+  <div class="container">
+    <h1>Payment Authorization</h1>
+    <div>
+      {{> Template.dynamic template=contentTemplate}}
+    </div>
+  </div>
+  {{> footer }}
+</template>
+
+<template name="paymentAuthorized">
+  <p>You have already authorized</p>
+</template>
+
+<template name="paymentNewAuthorization">
+  <form id="payment_authorize">
+    <div id="dropin"></div>
+    <br>
+    <button class="authorize btn btn-primary" type="submit">Add Card & Authorize ${{paymentRequest.totalAmount}}</button>
+  </form>
+</template>
