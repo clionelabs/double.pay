@@ -1,5 +1,5 @@
 Template.paymentAuthorization.helpers({
-  contentTemplate: function() {
+  contentTemplate() {
     let authorizationInfo = this;
     if (authorizationInfo.isAuthorized) {
       return 'paymentAuthorized';
@@ -10,7 +10,7 @@ Template.paymentAuthorization.helpers({
 });
 
 
-Template.paymentNewAuthorization.rendered = function() {
+Template.paymentNewAuthorization.onRendered(function() {
   let clientToken = this.data.clientToken;
   let customerId = this.data.customerId;
   let requestSent = false;
@@ -34,7 +34,7 @@ Template.paymentNewAuthorization.rendered = function() {
       });
     }
   });
-};
+});
 
 let handleAuthorizationCallback = function(success) {
   if (success) {
