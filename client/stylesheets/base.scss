@@ -1,3 +1,5 @@
+@import 'variables';
+
 html, body {
   height: 100%;
 }
@@ -17,7 +19,7 @@ html, body {
 header {
   text-align: center;
   font-size: 50px;
-  background: #006BCC;
+  background: $background-blue;
   color: white;
   font-family: 'Damion', cursive;
   border-top-left-radius: 5px;
@@ -25,16 +27,16 @@ header {
 }
 
 .main {
-  border: solid 1px rgba(151, 151, 151, .5);
+  border: solid 1px $border;
   min-height: 250px;
   padding: 30px;
   font-size: 15px;
-  color: rgba(0, 0, 0, 0.8);
+  color: $dark-grey;
 
   h1.payment_header {
     font-size: 20px;
     margin-bottom: 20px;
-    color: rgba(0, 0, 0, 0.8);
+    color: $dark-grey;
     font-family: Helvetica;
     text-transform: uppercase;
     text-align: center;
@@ -43,13 +45,13 @@ header {
 
   .authorize_notes {
     font-size: 12px;
-    color: rgba(0, 0, 0, 0.4);
+    color: $grey;
   }
 
   button.authorize {
     width: 100%;
     height: 38px;
-    background: #006BCC;
+    background: $background-blue;
     margin-bottom: 5px;
   }
 
@@ -64,12 +66,12 @@ header {
 
 
 footer {
-  color: rgba(0, 0, 0, 0.4);
+  color: $grey;
   margin-top: 5px;
   a {
-    color: rgba(0, 0, 0, 0.4);
+    color: $link;
     &:hover {
-      color: #bcbcbc;
+      color: $link-hover;
     }
   }
 }
