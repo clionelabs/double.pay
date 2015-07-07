@@ -1,23 +1,35 @@
 <template name="paymentAuthorization">
-  {{> notifications}}
   {{> header }}
-  <div class="container">
-    <h1>Payment Authorization</h1>
-    <div>
-      {{> Template.dynamic template=contentTemplate}}
-    </div>
+  <div class="main">
+    {{> Template.dynamic template=contentTemplate}}
   </div>
   {{> footer }}
 </template>
 
 <template name="paymentAuthorized">
-  <p>You have already authorized</p>
+  <p>{{customerName}},</p>
+  <p>Thank you for adding your card.</p>
+  <p>Please contact me if you want to switch to another credit card.</p>
+  <p>Double</p>
 </template>
 
 <template name="paymentNewAuthorization">
-  <form id="payment_authorize">
-    <div id="dropin"></div>
-    <br>
-    <button class="authorize btn btn-primary" type="submit">Add Card & Authorize ${{paymentRequest.totalAmount}}</button>
-  </form>
+  <h1 class="payment_header">Payment Authorization</h1>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-push-6">
+      <p>{{customerName}},</p>
+      <p>Thank you for using Double.</p>
+      <p>To ensure seamless experience with Double, please authorize us with your choice of PayPal or credit card.</p>
+      <p>Credit card payment is securely processed using <a href="http://paypal.com/" target="_blank">PayPal</a>. We do not store your card information.</p>
+      <p>Double</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-sm-pull-6">
+      <form id="payment_authorize">
+        <div id="dropin"></div>
+        <br>
+        <button class="authorize btn btn-primary" type="submit">Add Card &amp; Authorize</button>
+      </form>
+      <p class="authorize_notes">By authorizing, you agree to our <a href="http://askdouble.com/terms/" target="_blank">terms</a> &amp; <a href="http://askdouble.com/privacy/" target="_blank">privacy policy</a></p>
+    </div>
+  </div>
 </template>

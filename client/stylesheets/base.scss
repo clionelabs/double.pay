@@ -1,10 +1,57 @@
+html, body {
+  height: 100%;
+}
+.layout {
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: table;
+}
+.wrapper {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
 header {
-   background: url("/images/header.png");
-   a.navbar-brand {
-    font-weight: 700;
-    font-size: 26px;
-    font-family: Arial;
-    color: #efefef;
+  text-align: center;
+  font-size: 50px;
+  background: #006BCC;
+  color: white;
+  font-family: 'Damion', cursive;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.main {
+  border: solid 1px rgba(151, 151, 151, .5);
+  min-height: 250px;
+  padding: 30px;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.8);
+
+  h1.payment_header {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: Helvetica;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .authorize_notes {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+  button.authorize {
+    width: 100%;
+  }
+
+  p {
+    margin-bottom: 20px;
   }
 }
 
@@ -14,20 +61,12 @@ header {
 
 
 footer {
-  background-color: #003D6A;
-  color: #efefef;
-  padding: 15px;
-  font-weight: 300;
-
-
+  color: rgba(0, 0, 0, 0.4);
+  margin-top: 5px;
   a {
-    color: #efefef;
+    color: rgba(0, 0, 0, 0.4);
     &:hover {
       color: #bcbcbc;
     }
-  }
-
-  .links {
-    text-align: right;
   }
 }
