@@ -9,6 +9,17 @@ Template.paymentAuthorization.helpers({
   },
 });
 
+Template.paymentAuthorized.helpers({
+  customerName() {
+    return this.customer.profile.firstname;
+  }
+});
+
+Template.paymentNewAuthorization.helpers({
+  customerName() {
+    return this.customer.profile.firstname;
+  }
+});
 
 Template.paymentNewAuthorization.onRendered(function() {
   let clientToken = this.data.clientToken;

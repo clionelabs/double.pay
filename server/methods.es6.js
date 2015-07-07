@@ -6,13 +6,15 @@ Meteor.methods({
     if (isAuthorized) {
       data = {
         isAuthorized: true,
-        customerId: customerId
+        customerId: customerId,
+        customer: customer
       }
     } else {
       let clientToken = customer.createAuthorizationToken();
       data = {
         isAuthorized: false,
         customerId: customerId,
+        customer: customer,
         clientToken: clientToken
       }
     }
