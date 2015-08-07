@@ -22,6 +22,7 @@ Template.paymentNewAuthorization.helpers({
 });
 
 Template.paymentNewAuthorization.onRendered(function() {
+  let instance = this;
   let clientToken = this.data.clientToken;
   let customerId = this.data.customerId;
   let requestSent = false;
@@ -43,6 +44,9 @@ Template.paymentNewAuthorization.onRendered(function() {
       Meteor.call('authorizePayment', data, function(err) {
         handleAuthorizationCallback(!err);
       });
+    },
+    onReady: function () {
+      instance.$("button.authorize").show();
     }
   });
 });
