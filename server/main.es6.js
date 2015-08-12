@@ -12,8 +12,10 @@ let setupBrainTree = function() {
 }
 
 let setupAuthURLs = function() {
-  Users.findCustomers().forEach(function(customer) {
-    customer.generateAuthURL();
+  Users.findCustomers({'payment.authURL': {$exists: false}}).observe({
+    added: function(customer) {
+      customer.generateAuthURL();
+    }
   });
 }
 
