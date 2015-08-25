@@ -1,6 +1,7 @@
 @import 'variables';
 
 html, body {
+  font-family: HelveticaNeue-Light;
   height: 100%;
   background: $background-body;
 }
@@ -20,9 +21,9 @@ html, body {
 header {
   text-align: center;
   font-size: 50px;
-  background: $background-blue;
+  background: $background-orange;
   color: white;
-  font-family: 'Damion', cursive;
+  font-family: 'Montserrat', cursive;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -36,10 +37,11 @@ header {
   color: $dark-grey;
 
   h1.payment_header {
-    font-size: 20px;
+    font-size: 14px;
+    color: rgba(0,0,0,0.80);
+    line-height: 17px;
     margin-bottom: 20px;
     color: $dark-grey;
-    font-family: Helvetica;
     text-transform: uppercase;
     text-align: center;
     margin-top: 0px;
@@ -53,7 +55,8 @@ header {
   button.authorize {
     width: 100%;
     height: 38px;
-    background: $background-blue;
+    background: $background-orange;
+    border: none;
     margin-bottom: 5px;
     display: none;
   }
