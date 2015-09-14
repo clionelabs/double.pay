@@ -42,14 +42,22 @@ D.Channel = {
   messages(options = {}) {
     return D.Messages.find({channelId: this._id}, options);
   },
-  lastMessage() {
-    return D.Messages.findOne({channelId: this._id}, {sort: {timestamp: -1}});
-  },
   lastMessageTimestamp() {
-    return this.lastMessage().timestamp;
+    return this.lastMessage? this.lastMessage.timestamp: 0;
   },
   isNotReplied() {
-    let lastMessage = this.lastMessage();
-    return lastMessage && lastMessage.inOut === D.Messages.InOut.IN;
+    let lastMessage = this.lastMessage;
+    if (!lastMessage) return false;
+    let isReplied = lastMessage.inOut === D.Messages.InOut.OUT && !lastMessage.isAutoReply;
+    return !isReplied;
+  },
+  isOnline() {
+    let isChannelOnline = false;
+    if (this.category === D.Channels.Categories.SLACK) {
+      isChannelOnline |= _.reduce(this.extra.members, function(memo, member) {
+        return memo | member.presence === 'active';
+      }, false);
+    }
+    return isChannelOnline;
   }
 }
