@@ -1,8 +1,10 @@
 BrainTreeGateway = {
   get() {
+    let environment = Meteor.settings.braintree.isProduction?
+      Braintree.Environment.Production: Braintree.Environment.Sandbox;
+
     return BrainTreeConnect({
-      //If you set an ENV variable for PRODUCTION you can dynamically change out sandbox and production
-      environment: process.env.PRODUCTION && Braintree.Environment.Production || Braintree.Environment.Sandbox,
+      environment: environment,
       merchantId: Meteor.settings.braintree.merchantId,
       publicKey:  Meteor.settings.braintree.publicKey,
       privateKey: Meteor.settings.braintree.privateKey

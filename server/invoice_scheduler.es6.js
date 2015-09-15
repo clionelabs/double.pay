@@ -1,10 +1,13 @@
 TransactionScheduler = {
+  /**
+   * Loop through all submitted transactions, and check their statuses in braintree
+   *   update the doc according to the new statuses, if any
+   */
   checkSettled: () => {
-    let transactionSubmitted = Transactions.find({ status : Transaction.Status.SUBMITTED }).fetch();
-    console.log(transactionSubmitted);
+    let transactionSubmitted = Transactions.find({ status : Transactions.Statuses.SUBMITTED }).fetch();
     let gateway = BrainTreeGateway.get();
     _.each(transactionSubmitted, function(transaction) {
-      gateway.transaction.find(transaction.externalId, function(err, externalTransaction) {
+      gateway.transaction.find(transaction.braintreeTransactionId, function(err, externalTransaction) {
         if (!err) {
           if (externalTransaction.status === 'settled') {
             Transactions.settle(transaction._id);
@@ -18,7 +21,7 @@ TransactionScheduler = {
             Transactions.void(transaction._id);
           }
         } else {
-          console.log(err);
+          console.log('[TransactionSchedule] checkSettled error: ', err, transaction);
         }
       })
     });

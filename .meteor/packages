@@ -15,3 +15,4 @@ fourseven:scss
 twbs:bootstrap
 percolate:synced-cron
 patrickml:braintree
+momentjs:moment
