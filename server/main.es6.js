@@ -54,7 +54,7 @@ let setupTransactionListener = function() {
 Meteor.startup(()=> {
   setupBrainTree();
   setupAuthURLs();
-  setupTransactionListener();
+  //setupTransactionListener();
 
-  SyncedCron.start();
+  //SyncedCron.start();
 });
