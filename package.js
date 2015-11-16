@@ -16,6 +16,7 @@ Package.onUse(function(api) {
   api.use('grigio:babel');
   api.use('underscore');
   api.use('momentjs:moment');
+  api.use('fourseven:scss');
   api.use('templating', [
     'client'
   ]);
@@ -30,10 +31,11 @@ Package.onUse(function(api) {
     'lib/invoices.es6.js'
   ]);
   api.addFiles([
-    'client/actual_form_other_charges.html',
-    'client/actual_form_time_based_item.html',
-    'client/actual_form.html',
-    'client/actual_form.es6.js'
+    'client/variables.scss',
+    'client/invoices/actual_form_other_charges.html',
+    'client/invoices/actual_form_time_based_item.html',
+    'client/invoices/actual_form.html',
+    'client/invoices/actual_form.es6.js'
   ], ['client']);
   api.export('D');
 });
