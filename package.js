@@ -33,7 +33,6 @@ Package.onUse(function(api) {
     'client/actual_form_other_charges.html',
     'client/actual_form_time_based_item.html',
     'client/actual_form.html',
-    'client/actual_form_time_based_item.es6.js',
     'client/actual_form.es6.js'
   ], ['client']);
   api.export('D');
