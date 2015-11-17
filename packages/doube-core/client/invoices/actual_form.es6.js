@@ -1,12 +1,3 @@
-Template.assistantsInvoiceActualForm.onRendered(function() {
-  const data = this.data;
-  if (data.isStatic) {
-    $(window).on('beforeunload', function() {
-      Meteor.call('regenerateInvoiceToken', data._id);
-    });
-  }
-});
-
 Template.assistantsInvoiceActualForm.helpers({
   showOtherCharges() {
     return (this.otherCharges && this.otherCharges.length)

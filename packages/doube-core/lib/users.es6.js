@@ -90,5 +90,8 @@ D.User = {
   },
   displayNameWithInitial() {
     return this.profile.firstname + " " + this.profile.lastname[0] + ".";
+  },
+  hasPaymentMethod() {
+    return this.profile.payment && this.profile.payment.isAuthorized;
   }
 };

@@ -16,6 +16,8 @@ Package.onUse(function(api) {
   api.use('grigio:babel');
   api.use('underscore');
   api.use('momentjs:moment');
+  api.use('numeral:numeral');
+  api.use('oaf:moment-duration-format');
   api.use('fourseven:scss');
   api.use('templating', [
     'client'
