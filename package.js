@@ -31,6 +31,7 @@ Package.onUse(function(api) {
     'lib/invoices.es6.js'
   ]);
   api.addFiles([
+    'client/helpers.es6.js',
     'client/variables.scss',
     'client/invoices/actual_form.scss',
     'client/invoices/actual_form_other_charges.html',
