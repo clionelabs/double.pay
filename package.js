@@ -15,6 +15,13 @@ Package.onUse(function(api) {
   api.use('alanning:roles');
   api.use('grigio:babel');
   api.use('underscore');
+  api.use('momentjs:moment');
+  api.use('numeral:numeral');
+  api.use('oaf:moment-duration-format');
+  api.use('fourseven:scss');
+  api.use('templating', [
+    'client'
+  ]);
   api.addFiles([
     'lib/_d.es6.js',
     'lib/channels.es6.js',
@@ -22,7 +29,17 @@ Package.onUse(function(api) {
     'lib/configs.es6.js',
     'lib/users.es6.js',
     'lib/placements.es6.js',
-    'lib/events.es6.js'
+    'lib/events.es6.js',
+    'lib/invoices.es6.js'
   ]);
+  api.addFiles([
+    'client/helpers.es6.js',
+    'client/variables.scss',
+    'client/invoices/actual_form.scss',
+    'client/invoices/actual_form_other_charges.html',
+    'client/invoices/actual_form_time_based_item.html',
+    'client/invoices/actual_form.html',
+    'client/invoices/actual_form.es6.js'
+  ], ['client']);
   api.export('D');
 });
