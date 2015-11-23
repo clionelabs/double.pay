@@ -25,18 +25,6 @@ let setupAuthURLs = function() {
  */
 let setupTransactionListener = function() {
   D.Events.listen('newTransaction', function(data) {
-    if (!data.invoiceId) {
-      console.error('missing invoiceId', data);
-      return;
-    }
-    if (!data.customerId) {
-      console.error('missing customerId', data);
-      return;
-    }
-    if (!data.amount) {
-      console.error('missing amount', data);
-      return;
-    }
 
     try {
       let transactionId = Transactions.create(data);

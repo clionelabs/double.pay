@@ -23,21 +23,20 @@ Transactions.Statuses = {
  * Create transaction with the invoice data from double.dashboard
  *
  * InvoiceId should be unique - make sure it's not been created before
+ * taskId and oneTimePurchaseId should be unique - make sure it's not been created before
  */
 Transactions.create = (data) => {
-  let transaction = Transactions.findOne({invoiceId: data.invoiceId});
+  let transaction = Transactions.findOne({data: data});
   if (transaction) {
-    throw '[Transactions] transaction already existed for invoice: ' + JSON.stringify(data);
+    throw '[Transactions] transaction already existed for invoice / one time purchase: ' + JSON.stringify(data);
   }
 
   let doc = {
-    invoiceId: data.invoiceId,
-    customerId: data.customerId,
-    amount: data.amount,
+    data : data,
     status: Transactions.Statuses.NOT_SUBMITTED
-  }
+  };
   return Transactions.insert(doc);
-}
+};
 
 Transactions.linkBrainTree = (transactionId, braintreeTransactionId) => {
   return Transactions.update(transactionId,
@@ -45,17 +44,17 @@ Transactions.linkBrainTree = (transactionId, braintreeTransactionId) => {
 };
 Transactions.settle = (transactionId) => {
   let transaction = Transactions.findOne(transactionId);
-  D.Events.create('transactionSuccess', {invoiceId: transaction.invoiceId}); // notify double.dashboard to update invoice status
+  D.Events.create('transactionSuccess', transaction.data); // notify double.dashboard to update invoice status
   return Transactions.update(transactionId, {$set : {status : Transactions.Statuses.SETTLED }});
 };
 Transactions.fail = (transactionId) => {
   let transaction = Transactions.findOne(transactionId);
-  D.Events.create('transactionFailure', {invoiceId: transaction.invoiceId}); // notify double.dashboard to update invoice status
+  D.Events.create('transactionFailure', transaction.data); // notify double.dashboard to update invoice status
   return Transactions.update(transactionId, {$set : {status : Transactions.Statuses.FAILED }});
 };
 Transactions.void = (transactionId) => {
   let transaction = Transactions.findOne(transactionId);
-  D.Events.create('transactionVoid', {invoiceId: transaction.invoiceId}); // notify double.dashboard to update invoice status
+  D.Events.create('transactionVoid', transaction.data); // notify double.dashboard to update invoice status
   return Transactions.update(transactionId, {$set : {status : Transactions.Statuses.VOIDED }});
 };
 
@@ -73,7 +72,7 @@ Transaction = {
     let paymentMethod = customer.getPaymentMethod();
     BrainTreeGateway.get().transaction.sale({
       paymentMethodToken : paymentMethod.token,
-      amount : this.amount,
+      amount : this.data.amount,
       options: {
         submitForSettlement: true
       }
