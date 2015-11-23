@@ -23,6 +23,7 @@ Package.onUse(function(api) {
     'client'
   ]);
   api.addFiles([
+    'lib/helpers.es6.js',
     'lib/_d.es6.js',
     'lib/channels.es6.js',
     'lib/messages.es6.js',
@@ -42,4 +43,8 @@ Package.onUse(function(api) {
     'client/invoices/actual_form.es6.js'
   ], ['client']);
   api.export('D');
+  api.export('DateFormatter');
+  api.export('DurationFormatter');
+  api.export('AmountFormatter');
+  api.export('DurationConverter');
 });
