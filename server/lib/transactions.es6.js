@@ -90,10 +90,3 @@ Transaction = {
     });
   }
 };
-
-Transactions.startup = () => {
-  _.each(Transactions.find({ status : Transactions.Statuses.NOT_SUBMITTED }).fetch(), function(transaction) {
-    transaction.submit();
-  });
-};
-
