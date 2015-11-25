@@ -45,4 +45,5 @@ Meteor.startup(()=> {
   setupTransactionListener();
 
   SyncedCron.start();
+  Transactions.startup();
 });

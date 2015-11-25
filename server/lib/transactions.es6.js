@@ -66,9 +66,7 @@ Transaction = {
       return;
     }
     let transaction = this;
-    Transactions.update(transaction._id, {$set : {status : Transactions.Statuses.SUBMITTING }});
-
-    let customer = Users.findOneCustomer(this.customerId);
+    let customer = Users.findOneCustomer(this.data.customerId);
     let paymentMethod = customer.getPaymentMethod();
     BrainTreeGateway.get().transaction.sale({
       paymentMethodToken : paymentMethod.token,
@@ -82,6 +80,7 @@ Transaction = {
         if (result.success) {
           let externalId = result.transaction.id;
           Transactions.linkBrainTree(transaction._id, externalId);
+          Transactions.update(transaction._id, {$set : {status : Transactions.Statuses.SUBMITTING }});
         } else {
           Transactions.fail(transaction._id);
         }
@@ -90,4 +89,11 @@ Transaction = {
       }
     });
   }
-}
+};
+
+Transactions.startup = () => {
+  _.each(Transactions.find({ status : Transactions.Statuses.NOT_SUBMITTED }).fetch(), function(transaction) {
+    transaction.submit();
+  });
+};
+
