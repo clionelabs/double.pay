@@ -68,6 +68,7 @@ Transaction = {
     let transaction = this;
     let customer = Users.findOneCustomer(this.data.customerId);
     let paymentMethod = customer.getPaymentMethod();
+    Transactions.update(transaction._id, {$set : {status : Transactions.Statuses.SUBMITTING }});
     BrainTreeGateway.get().transaction.sale({
       paymentMethodToken : paymentMethod.token,
       amount : this.data.amount,
@@ -80,7 +81,6 @@ Transaction = {
         if (result.success) {
           let externalId = result.transaction.id;
           Transactions.linkBrainTree(transaction._id, externalId);
-          Transactions.update(transaction._id, {$set : {status : Transactions.Statuses.SUBMITTING }});
         } else {
           Transactions.fail(transaction._id);
         }
