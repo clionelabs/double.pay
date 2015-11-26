@@ -68,6 +68,10 @@ Transaction = {
     let transaction = this;
     let customer = Users.findOneCustomer(this.data.customerId);
     let paymentMethod = customer.getPaymentMethod();
+    if (!paymentMethod) {
+      console.error('[Transactions] the payment method customerId(' + customer._id + ") is not founded");
+      return;
+    }
     Transactions.update(transaction._id, {$set : {status : Transactions.Statuses.SUBMITTING }});
     BrainTreeGateway.get().transaction.sale({
       paymentMethodToken : paymentMethod.token,
@@ -76,15 +80,20 @@ Transaction = {
         submitForSettlement: true
       }
     }, function(err, result) {
-      console.log("[Transactions] sale result: ", result, err);
       if (!err) {
         if (result.success) {
           let externalId = result.transaction.id;
+          console.log("[Transactions] sales succeed. brainTransactionId: "+ result.transaction.id);
+          console.log("[Transactions] data", transaction.data);
           Transactions.linkBrainTree(transaction._id, externalId);
         } else {
+          console.error("[Transactions] sales failed: ", result.message);
+          console.error("[Transactions] data", transaction.data);
           Transactions.fail(transaction._id);
         }
       } else {
+        console.error("[Transactions] sales error: ", err);
+        console.error("[Transactions] data", transaction.data);
         Transactions.fail(transaction._id);
       }
     });

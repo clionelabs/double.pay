@@ -19,6 +19,10 @@ TransactionScheduler = {
             Transactions.fail(transaction._id);
           } else if (externalTransaction.status === 'voided') {
             Transactions.void(transaction._id);
+          } else if (externalTransaction.status === 'submitted') {
+            //Do Nothing
+          } else {
+            console.log('[TransactionSchedule] checkSettled status unknown: ', transaction.status);
           }
         } else {
           console.log('[TransactionSchedule] checkSettled error: ', err, transaction);
