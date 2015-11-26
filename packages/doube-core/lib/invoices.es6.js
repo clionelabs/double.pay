@@ -57,7 +57,7 @@ D.Invoice.ProtoType = {
   },
   otherChargesRevenueTotal() {
     return _.reduce(this.otherCharges, (memo, otherCharge) => {
-      return memo + (otherCharge.status === Invoice.OtherCharge.Status.PENDING ? 0 : otherCharge.amount);
+      return memo + (otherCharge.status === Invoice.OtherCharge.Status.PENDING ? otherCharge.amount : 0);
     }, 0);
   },
   revenue() {
