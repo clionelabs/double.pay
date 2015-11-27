@@ -53,12 +53,16 @@
         </div>
         <div class="total">
           <div class="line">
+            <div class="key">Membership total: </div>
+            <div class="value">{{formatAmount membershipsTotal}}</div>
+          </div>
+          <div class="line">
             <div class="key">Other Charges: </div>
             <div class="value">{{formatAmount otherChargesTotal}}</div>
           </div>
           <div class="line">
             <div class="key">Payment {{ debitedOrDue }} (HKD):</div>
-            <div class="value">{{formatAmount debit}}</div>
+            <div class="value">{{formatAmount revenue}}</div>
           </div>
         </div>
       </div>
@@ -66,6 +70,7 @@
     <div class="breakdown">
 
       {{>Template.dynamic template=showTimeBasedItems }}
+      {{>Template.dynamic template=showMemberships }}
       {{>Template.dynamic template=showOtherCharges }}
     </div>
 
@@ -107,4 +112,15 @@
       {{> assistantInvoiceActualFormTimeBasedItem }}
     {{/each}}
   </table>
+</template>
+<template name="assistantsInvoiceActualFormMembershipsTable">
+    <table class="table table-responsive memberships">
+        <tr>
+            <th>Membership</th>
+            <th>(HKD)</th>
+        </tr>
+        {{#each memberships}}
+            {{> assistantInvoiceActualFormMembership }}
+        {{/each}}
+    </table>
 </template>

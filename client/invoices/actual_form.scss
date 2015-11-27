@@ -67,7 +67,7 @@
     margin-bottom: 0px;
   }
 
-  .time-based-items, .one-time-purchases {
+  .time-based-items, .one-time-purchases, .memberships {
     tr {
       th {
         background: $double-grey2;
@@ -75,10 +75,23 @@
 
       }
       &:nth-child(2n+1) {
-        background : $double-grey;
+        background: $double-grey;
       }
+    }
+    th, td {
+      padding: 5px 10px;
+      &:last-child {
+        width: 10%;
+        min-width: 120px;
+        display : table-cell;
+        text-align: right;
+      }
+    }
+  }
+
+  .time-based-items, .one-time-purchases {
+    tr {
       th, td {
-        padding: 5px 10px;
         &:first-child {
           width: 25%;
           min-width : 120px;
