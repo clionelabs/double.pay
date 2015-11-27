@@ -11,8 +11,8 @@ D.Invoice.OtherCharge = {
   Status : {
     PENDING : 'pending',
     CHARGED : 'charged',
-    CHARGING : 'charging',
-  },
+    CHARGING : 'charging'
+  }
 };
 
 D.Invoice.OtherCharge.Status.toIncluded = [
@@ -55,17 +55,14 @@ D.Invoice.ProtoType = {
   isEditable() {
     return this.isStatic !== undefined ? false : this.status === D.Invoice.Status.Draft;
   },
-  otherChargesRevenueTotal() {
-    return _.reduce(this.otherCharges, (memo, otherCharge) => {
-      return memo + (otherCharge.status === Invoice.OtherCharge.Status.PENDING ? otherCharge.amount : 0);
+  membershipsTotal() {
+    return _.reduce(this.memberships, (memo, membership) => {
+      return memo +  membership.amount;
     }, 0);
   },
   revenue() {
-    return this.timeBasedItemsTotal() + this.otherChargesRevenueTotal();
+    return this.timeBasedItemsTotal() + this.membershipsTotal();
   },
-  debit() {
-    return this.timeBasedItemsTotal() + this.otherChargesRevenueTotal();
-  }
 };
 
 D.Invoice.TimeBasedItem = {};

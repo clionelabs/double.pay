@@ -37,7 +37,8 @@ Package.onUse(function(api) {
     'client/helpers.es6.js',
     'client/variables.scss',
     'client/invoices/actual_form.scss',
-    'client/invoices/actual_form_other_charges.html',
+    'client/invoices/actual_form_membership.html',
+    'client/invoices/actual_form_other_charge.html',
     'client/invoices/actual_form_time_based_item.html',
     'client/invoices/actual_form.html',
     'client/invoices/actual_form.es6.js'
