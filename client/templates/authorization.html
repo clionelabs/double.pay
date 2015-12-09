@@ -1,38 +1,38 @@
-<template name="paymentAuthorization">
-  {{> header }}
-  <div class="main">
-    {{> Template.dynamic template=contentTemplate}}
-  </div>
-  {{> footer }}
-</template>
-
 <template name="paymentAuthorized">
-  <p>{{customerName}},</p>
-  <p>Thank you for setting up your payment method.</p>
-  <p>We are ready to serve you.</p>
-  <p>
-    <a href="mailto:double@double.co" class="cta btn btn-primary">Email us your request</a>
-  </p>
-  <p>Double</p>
+  {{> header }}
+    <div class="main">
+      <p>{{customerName}},</p>
+      <p>Thank you for setting up your payment method.</p>
+      <p>We are ready to serve you.</p>
+      <p>
+        <a href="mailto:double@double.co" class="cta btn btn-primary">Email us your request</a>
+      </p>
+      <p>Double</p>
+    </div>
+  {{> footer}}
 </template>
 
 <template name="paymentNewAuthorization">
-  <h1 class="payment_header">Payment Authorization</h1>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-push-6">
-      <p>{{customerName}},</p>
-      <p>Thank you for using Double.</p>
-      <p>To ensure a seamless experience with Double, please authorize us for payment with your choice of <strong>American Express</strong>, <strong>MasterCard</strong>, or <strong>Visa</strong> credit card.</p>
-      <p>Credit card payment is securely processed using <a href="http://www.braintreepayments.com" target="_blank">Braintree, a PayPal company</a>. We do not store your card information.</p>
-      <p>Double</p>
+  {{> header }}
+    <div class="main">
+      <h1 class="payment_header">Payment Authorization</h1>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-push-6">
+          <p>{{customerName}},</p>
+          <p>Thank you for using Double.</p>
+          <p>To ensure a seamless experience with Double, please authorize us for payment with your choice of <strong>American Express</strong>, <strong>MasterCard</strong>, or <strong>Visa</strong> credit card.</p>
+          <p>Credit card payment is securely processed using <a href="http://www.braintreepayments.com" target="_blank">Braintree, a PayPal company</a>. We do not store your card information.</p>
+          <p>Double</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-sm-pull-6">
+          <form id="payment_authorize">
+            <div id="dropin"></div>
+            <br>
+            <button class="authorize btn btn-primary" type="submit">Add Card &amp; Authorize</button>
+          </form>
+          <p class="authorize_notes">By authorizing, you agree to our <a href="http://askdouble.com/terms/" target="_blank">terms</a> &amp; <a href="http://askdouble.com/privacy/" target="_blank">privacy policy</a></p>
+        </div>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-sm-pull-6">
-      <form id="payment_authorize">
-        <div id="dropin"></div>
-        <br>
-        <button class="authorize btn btn-primary" type="submit">Add Card &amp; Authorize</button>
-      </form>
-      <p class="authorize_notes">By authorizing, you agree to our <a href="http://askdouble.com/terms/" target="_blank">terms</a> &amp; <a href="http://askdouble.com/privacy/" target="_blank">privacy policy</a></p>
-    </div>
-  </div>
+  {{> footer}}
 </template>

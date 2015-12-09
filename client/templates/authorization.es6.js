@@ -1,14 +1,3 @@
-Template.paymentAuthorization.helpers({
-  contentTemplate() {
-    let authorizationInfo = this;
-    if (authorizationInfo.isAuthorized) {
-      return 'paymentAuthorized';
-    } else {
-      return 'paymentNewAuthorization';
-    }
-  },
-});
-
 Template.paymentAuthorized.helpers({
   customerName() {
     return this.customer.profile.firstname;
@@ -42,7 +31,7 @@ Template.paymentNewAuthorization.onRendered(function() {
       resquestSent = true;
 
       Meteor.call('authorizePayment', data, function(err) {
-        handleAuthorizationCallback(!err);
+        handleAuthorizationCallback(!err, customerId);
       });
     },
     onReady: function () {
@@ -51,11 +40,9 @@ Template.paymentNewAuthorization.onRendered(function() {
   });
 });
 
-let handleAuthorizationCallback = function(success) {
+let handleAuthorizationCallback = function(success, customerId) {
   if (success) {
-    let authorizationInfo = Session.get('authorizationInfo');
-    authorizationInfo.isAuthorized = true;
-    Session.set('authorizationInfo', authorizationInfo);
+    Router.go("authorized", {customerId: customerId});
   } else {
     Notifications.error('Authorization failed', 'Failed to process your authorization.');
   }
