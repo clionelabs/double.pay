@@ -1,22 +1,20 @@
 Meteor.methods({
+  getPaymentAuthorizedInfo(customerId) {
+    let customer = Users.findOneCustomer(customerId);
+    let data = {
+      customerId: customerId,
+      customer: customer
+    }
+    return data;
+  },
+
   getPaymentAuthorizationInfo(customerId) {
     let customer = Users.findOneCustomer(customerId);
-    let isAuthorized = customer.isAuthorized();
-    let data;
-    if (isAuthorized) {
-      data = {
-        isAuthorized: true,
-        customerId: customerId,
-        customer: customer
-      }
-    } else {
-      let clientToken = customer.createAuthorizationToken();
-      data = {
-        isAuthorized: false,
-        customerId: customerId,
-        customer: customer,
-        clientToken: clientToken
-      }
+    let clientToken = customer.createAuthorizationToken();
+    let data = {
+      customerId: customerId,
+      customer: customer,
+      clientToken: clientToken
     }
     return data;
   },
@@ -26,7 +24,7 @@ Meteor.methods({
     let customerId = data.customerId;
     let customer = Users.findOneCustomer(customerId);
     let nonce = data.nonce;
-    let result = customer.createVault(nonce);
+    let result = customer.updatePaymentMethod(nonce);
     if (!result) {
       throw Meteor.Error("Authorization Error", "Failed to create payment method");
     }
